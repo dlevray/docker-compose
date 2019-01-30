@@ -11,7 +11,10 @@ services:
       - ./puppet:/etc/puppetlabs/puppet/
       - ./puppetssl:/etc/puppetlabs/puppet/ssl/
       - ./serverdata:/opt/puppetlabs/server/data/puppetserver/
-
+    networks:
+      - frontend
+      - backend
+      
   puppetdb-postgres:
     #container_name: postgres
     hostname: postgres
@@ -23,7 +26,9 @@ services:
       - 5432
     volumes:
       - ./puppetdb-postgres/data:/var/lib/postgresql/data/
-
+    networks:
+      - backend
+      
   puppetdb:
     hostname: puppetdb
     container_name: puppetdb
@@ -31,8 +36,6 @@ services:
     ports:
       - 8080
       - 8081
-    volumes:
-
     volumes:
       - ./puppetssl:/etc/puppetlabs/puppet/ssl/
     networks:
