@@ -32,3 +32,15 @@ services:
       - 8080
       - 8081
     volumes:
+
+    volumes:
+      - ./puppetssl:/etc/puppetlabs/puppet/ssl/
+    networks:
+      - backend
+
+networks:
+  frontend:
+  backend:
+
+volumes:
+  db-data:
